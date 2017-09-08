@@ -274,17 +274,25 @@ class Item
 
     /**
      * [shipping description]
+     * @param  [type] $cost    [description]
      * @param  [type] $code    [description]
      * @param  [type] $service [description]
-     * @param  [type] $cost    [description]
      * @param  [type] $region  [description]
      * @return [type]          [description]
      */
-    public function shipping($code, $service, $cost, $region = null)
+    public function shipping($cost, $code = null, $service = null, $region = null)
     {
         $node = new Node('shipping');
-        $value = "<g:country>{$code}</g:country><g:service>{$service}</g:service><g:price>{$cost}</g:price>";
+        $value = "<g:price>{$cost}</g:price>";
+        
+        if($code){
+          $value .= "<g:country>{$code}</g:country>";
+        }
 
+        if($service){
+          $value .= "<g:service>{$service}</g:service>";
+        }
+        
         if($region) {
           $value .= "<g:region>{$region}</g:region>";
         }
