@@ -268,7 +268,14 @@ class Feed
     {
         if (ob_get_contents()) ob_end_clean();
         $this->addItemsToFeed();
-        $data = html_entity_decode($this->feed->asXml());
+        
+        $dom = new \DOMDocument("1.0");
+        $dom->preserveWhiteSpace = false;
+        $dom->formatOutput = true;
+        $dom->loadXML(html_entity_decode($this->feed->asXML()));
+        $data = $dom->saveXML();
+
+        //$data = html_entity_decode($this->feed->asXml());
         if ($output) {
             header('Content-Type: application/xml; charset=utf-8');
             die($data);
