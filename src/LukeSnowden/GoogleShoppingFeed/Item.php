@@ -201,6 +201,18 @@ class Item
         $this->nodes['mpn'] = $node->value($mpn)->_namespace($this->namespace)->addCdata();
     }
 
+
+    /**
+     * [mpn description]
+     * @param  [type] $mnp [description]
+     * @return [type]      [description]
+     */
+    public function shipping_weight($shipping_weight_in_kg)
+    {
+        $node = new Node('shipping_weight');
+        $this->nodes['shipping_weight'] = $node->value($shipping_weight_in_kg . 'kg')->_namespace($this->namespace)->addCdata();
+    }
+    
     /**
      * [gtin description]
      * @param  [type] $gtin [description]
