@@ -112,23 +112,25 @@ class Item
     /**
      * [price - Set the price of the product, do not format before passing]
      * @param  [type] $price [description]
+     * @param  string $currency  pass EUR for example
      * @return [type]        [description]
      */
-    public function price($price)
+    public function price($price, $currency = null)
     {
         $node = new Node('price');
-        $this->nodes['price'] = $node->value(number_format($price, 2, '.', ''))->_namespace($this->namespace);
+        $this->nodes['price'] = $node->value(number_format($price, 2, '.', '') . ($currency ? ' ' . $currency : '') )->_namespace($this->namespace);
     }
 
     /**
      * [sale_price - set the sale price, do not format before passing]
      * @param  [type] $salePrice [description]
+     * @param  string $currency  pass EUR for example
      * @return [type]            [description]
      */
-    public function sale_price($salePrice)
+    public function sale_price($salePrice, $currency = null)
     {
         $node = new Node('sale_price');
-        $this->nodes['sale_price'] = $node->value(number_format($salePrice, 2, '.', ''))->_namespace($this->namespace);
+        $this->nodes['sale_price'] = $node->value(number_format($salePrice, 2, '.', ''). ($currency ? ' ' . $currency : ''))->_namespace($this->namespace);
     }
 
     /**
